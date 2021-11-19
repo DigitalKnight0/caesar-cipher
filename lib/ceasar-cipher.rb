@@ -1,3 +1,5 @@
+#lib/ceasar-cipher.rb
+
 def cipher(phrase , factor)
     arr = phrase.split("")
     factor > 26 ? factor %= 26 : factor
@@ -5,8 +7,8 @@ def cipher(phrase , factor)
     arr.each_with_index do |x , ind|
         if x.downcase.between?("a" , "z")
             if (x.downcase.ord + factor) > "z".ord
-               factor = ((x.downcase.ord + factor) - "z".ord) + "z".ord
-               arr[ind] = (x.ord + factor).chr
+                arr[ind] = (((x.downcase.ord + factor) - "z".ord) + ("a".ord - 1)).chr
+                arr[ind] = (arr[ind].ord - 32).chr unless x == x.downcase   
             else
                 arr[ind] = (x.ord + factor).chr
             end
@@ -17,4 +19,4 @@ def cipher(phrase , factor)
 
 end  
 
-cipher("Hi i am hecker LOL" , 28)
+
